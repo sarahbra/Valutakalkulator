@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Valutakalkulator</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="application/javascript">
+        function hentValuta() {
+            const sort = $("#valuta").val();
+            const kurs = $("#verdi").val();
+            const valuta = {
+                valuta : sort,
+                verdi : verdi
+            };
+
+            $.get("/beregnKurs",valuta,function(nok) {
+                const ut = kurs + " i " + sort + " blir :" +nok+ " kr."
+                $("#resultat").html(ut);
+            })
+        }
+    </script>
+</head>
+<body>
+    <h2>Beregn verdi i norske kroner</h2>
+    <table>
+        <tr>
+            <td>Valutasort(SEK,USD,EUR,GBP)</td>
+            <td><input type="text" id="valuta"></td>
+        </tr>
+        <tr>
+            <td>Verdi</td>
+            <td><input type="text" id="verdi"></td>
+        </tr>
+    </table>
+    <button onclick="hentValuta()">Regn om til NOK</button>
+    <div id="resultat"></div>
+</body>
+</html>
